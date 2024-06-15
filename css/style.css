@@ -1,0 +1,33 @@
+.fondoBLACK {
+    background-color: rgba(0, 0, 0, 0.863);
+}
+.fondoGRAY {
+    background-color: rgba(128, 128, 128, 0.562);
+}
+.fondoRED {
+    background-color: red;
+}
+.fondoWHITE {
+    background-color: white;
+}
+.fondoGREEN {
+    background-color: green;
+}
+.fondoBLUE {
+    background-color: rgba(0, 0, 255, 0.692);
+}
+.fondoVIOLET {
+    background-color: blueviolet;
+}
+.fondoPINK {
+    background-color: pink;
+}
+.fondoLIGHTBLUE {
+    background-color: lightblue;
+}
+.fondoYELLOW {
+    background-color: rgb(202, 202, 36);
+}
+.letraBLANCAS{
+    color: white
+}
