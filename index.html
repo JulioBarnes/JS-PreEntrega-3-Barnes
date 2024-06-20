@@ -7,106 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script defer src="./js/arrays.js"></script>
-    <script defer src="./js/class.js"></script>
+    <script src="./js/arrays.js"></script>
     <script defer src="./js/perfumes.js"></script>
 </head>
 <body>
-    <header>
-        <h1 class="m-3">Perfumes</h1>
+    <header class="m-3">
+        <h1 class="my-3">Perfumes</h1>
+        <div class="d-flex flex-wrap align-items-center justify-content-end">
+            <img id="carrito" class="logo" src="./assests/img/Carrito 32.png" title="Ir al carrito">
+        </div>
+        <div class="carrito d-flex justify-content-end">
+            <p>Carrito:<span id="perfumesEnCarrito">0</span></p>
+        </div>
+        <search class="d-flex justify-content-start">
+            <input class="inputSearch" type="search" id="inputSearch" placeholder="🔍 Buscar perfume">
+        </search>
     </header>
     <main>
-        <section class="d-flex flex-wrap align-items-center justify-content-around m-3 p-3">
-            <div class="card fondoBLACK" style="width: 18rem;">
-                <img src="./assests/img/perfume.png" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                  <p class="card-text">Código ID: 1</p>
-                  <p class="card-text">Nombre: BLACK</p>
-                  <p class="card-text">Precio: $13.000</p>
-                  <p class="card-text">Categoría: Amaderado</p>
-                </div>
-            </div>
-            <div class="card fondoWHITE" style="width: 18rem;">
-                <img src="./assests/img/perfume.png" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                    <p class="card-text">Código ID: 2 </p>
-                    <p class="card-text">Nombre: WHITE</p>
-                    <p class="card-text">Precio: $11.000</p>
-                    <p class="card-text">Categoría: Cítrico</p>
-                  </div>
-            </div>
-            <div class="card fondoRED" style="width: 18rem;">
-                <img src="./assests/img/perfume.png" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                    <p class="card-text">Código ID: 3</p>
-                    <p class="card-text">Nombre: RED</p>
-                    <p class="card-text">Precio: $15.000</p>
-                    <p class="card-text">Categoría: Especiado</p>
-                  </div>
-            </div>
-            <div class="card fondoGREEN" style="width: 18rem;">
-                <img src="./assests/img/perfume.png" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                    <p class="card-text">Código ID: 4</p>
-                    <p class="card-text">Nombre: GREEN</p>
-                    <p class="card-text">Precio: $13.000</p>
-                    <p class="card-text">Categoría: Amaderado</p>
-                  </div>
-            </div>
-            <div class="card fondoBLUE" style="width: 18rem;">
-                <img src="./assests/img/perfume.png" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                    <p class="card-text">Código ID: 5</p>
-                    <p class="card-text">Nombre: BLUE</p>
-                    <p class="card-text">Precio: 11.000</p>
-                    <p class="card-text">Categoría: Cítrico</p>
-                  </div>
-            </div>
-            <div class="card fondoYELLOW" style="width: 18rem;">
-                <img src="./assests/img/perfume.png" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                    <p class="card-text">Código ID: 6</p>
-                    <p class="card-text">Nombre: YELLOW</p>
-                    <p class="card-text">Precio: $15.000</p>
-                    <p class="card-text">Categoría: Floral</p>
-                  </div>
-            </div>
-            <div class="card fondoPINK" style="width: 18rem;">
-                <img src="./assests/img/perfume.png" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                    <p class="card-text">Código ID: 7</p>
-                    <p class="card-text">Nombre: PINK</p>
-                    <p class="card-text">Precio: $15.000</p>
-                    <p class="card-text">Categoría: Floral</p>
-                  </div>
-            </div>
-            <div class="card fondoVIOLET" style="width: 18rem;">
-                <img src="./assests/img/perfume.png" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                    <p class="card-text">Código ID: 8</p>
-                    <p class="card-text">Nombre: VIOLET</p>
-                    <p class="card-text">Precio: $15.000</p>
-                    <p class="card-text">Categoría: Floral</p>
-                  </div>
-            </div>
-            <div class="card fondoLIGHTBLUE" style="width: 18rem;">
-                <img src="./assests/img/perfume.png" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                    <p class="card-text">Código ID: 9</p>
-                    <p class="card-text">Nombre: LIGHT BLUE</p>
-                    <p class="card-text">Precio: $11.000</p>
-                    <p class="card-text">Categoría: Cítrico</p>
-                  </div>
-            </div>
-            <div class="card fondoGRAY" style="width: 18rem;">
-                <img src="./assests/img/perfume.png" class="card-img-top" alt="...">
-                <div class="card-body bg-light">
-                    <p class="card-text">Código ID: 10</p>
-                    <p class="card-text">Nombre: GRAY</p>
-                    <p class="card-text">Precio: $13.000</p>
-                    <p class="card-text">Categoría: Amaderado</p>
-                  </div>
-            </div>
+        <section id= "sectionCards" class="d-flex flex-wrap align-items-center justify-content-around m-3 p-3">
+            
         </section>
     </main>
     <footer>

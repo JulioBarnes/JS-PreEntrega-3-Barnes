@@ -31,3 +31,35 @@
 .letraBLANCAS{
     color: white
 }
+.inputSearch{
+    width: 60%;
+}
+.btn-agregar {
+    color: #fff;
+    background-color: #024b00;
+    border-color: #024b00;
+  }
+
+  div#mensajeComprar {
+    visibility: hidden;
+    margin: 0 auto;
+    width: 600px;
+    padding: 20px;
+    background-color: rgb(153, 215, 153);
+    color: white;
+    font-weight: 700;
+    border-radius: 10px;
+    box-shadow: 6px 6px 16px lightgray;
+}
+
+.mostrar-mensaje {
+    visibility: visible !important;
+}
+
+.fotoEnCarrito{
+    width: 80px;
+    height: 80px;
+}
+.quitar-carrito {
+    cursor: pointer;
+}

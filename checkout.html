@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfumes</title>
+    <link rel="shortcut icon" href="colonia.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <script src="./js/arrays.js"></script> -->
+    <script defer src="./js/checkout.js"></script>
+    <!-- <script defer src="./js/class.js"></script> -->
+    <!-- <script defer src="./js/perfumes.js"></script> -->
+</head>
+<body>
+    <header>
+        <h1 id="titulo">Electro-Commerce</h1>
+        <p>Verifica tus productos antes de confirmar la compra:</p>
+        <div class="centrar-div">
+            <button class="button button-outline"><a href="index.html">Seguir comprando</a></button> 
+        </div>
+        <div class="centrar-div" id="mensajeComprar">
+            <h3>🛍️ Muchas gracias por su compra!</h3>
+        </div>
+        <hr>
+    </header>
+    <main>
+        <section>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th id="tablehead">Producto</th>
+                        <th id="tablehead">Nombre</th>
+                        <th id="tablehead">Importe</th>
+                        <th id="tablehead">Quitar</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+                <tfoot>
+                    <tr class="total-carrito">
+                        <td></td>
+                        <td>TOTAL:</td>
+                        <td id="totalCarrito">$ 0.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+        <div class="centrar-div">
+            <button class="button" id="btnComprar">COMPRAR</button>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,54 +1,66 @@
-//Array vacío para pushear perfumes al carrito después
-const carrito = []
+const cardPerfumes = document.getElementById("sectionCards")
+const carritoDeCompras = document.getElementById("carrito")
+const perfumesEnCarrito = document.getElementById("perfumesEnCarrito")
+const inputSearch = document.getElementById("inputSearch")
+const carrito = JSON.parse(localStorage.getItem("carritoPerfumes")) ?? []
+function actualizarPerfumesEnCarrito(){
+    perfumesEnCarrito.textContent = carrito.length
+}
+function generarCardPerfumes(array) {
+    if (array.length > 0) {
+        cardPerfumes.innerHTML = ""
+        array.forEach((perfume) => cardPerfumes.innerHTML += retornarCardHTML(perfume)) 
+        eventoAgregarCarrito()
+    } else {
+        cardPerfumes.innerHTML = retornarCardError()
+    }
+}
+function retornarCardHTML(perfume) {
+    return `<div class="card my-3" style="width: 18rem;">
+                <img src="${perfume.imagen}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">${perfume.nombre}</h5>
+                  <p class="card-text">Precio: $${perfume.precio}</p>
+                  <a id = "${perfume.id}" class="btn btn-agregar">Agregar al carrito</a>
+                </div>
+            </div>`
+}
+function retornarCardError() {
+    return `<div class="div-card-error">
+                <h1>Se ha producido un error</h1>
+                <p>Intente nuevamente en unos instantes...</p>
+            </div>`
+}
+function eventoAgregarCarrito(){
+    const botonAgregar = document.querySelectorAll("a.btn-agregar")
+    if (botonAgregar.length > 0){
+            botonAgregar.forEach((boton) => boton.addEventListener("click", () => {
+            const perfumeSeleccionado = perfumes.find((perfume)=> perfume.id == boton.id)
+            carrito.push(perfumeSeleccionado)
+            actualizarPerfumesEnCarrito()
+            localStorage.setItem("carritoPerfumes", JSON.stringify(carrito))
+        })
+    )}
+}
+generarCardPerfumes(perfumes)
+carritoDeCompras.addEventListener("click", () => {
+    carrito.length > 0 ? location.href = "checkout.html" : alert("⛔️ No cargaste nada al carrito")
+})
+carritoDeCompras.addEventListener("mousemove", () => {
+    if (carrito.length > 0) {
+        carritoDeCompras.style.cursor = "pointer"
+        carritoDeCompras.title = "Productos en carrito: " + carrito.length
+    } else {
+        carritoDeCompras.style.cursor = "not-allowed"
+    }
+})
+inputSearch.addEventListener("keyup", (e)=> { 
+    if (e.key === "Enter") {
+        let resultado = perfumes.filter((perfume)=> perfume.nombre.toLowerCase().includes(inputSearch.value.toLowerCase()))
+        localStorage.setItem("ultimaBusqueda", inputSearch.value)
 
-//FUNCIÓN DE BÚSQUEDA
-function buscarPerfume(codigo){//llamar el parámetro id para traer el dato desde la función comprar()
-    let perfumeBuscado = perfumes.find((perfume)=>perfume.id === codigo)
-    return perfumeBuscado
-}
-
-function filtrarPerfumePorCategoria(){
-    let respuesta = true
-    do{
-        let categoria = prompt("Ingrese el nombre de la categoría del perfume que desea buscar: ")
-        categoria = categoria.trim().toLowerCase().normalize()
-        if (categoria.length > 0){
-            let perfumesFiltrados = perfumes.filter((perfume)=>perfume.categoria === categoria)
-            console.table(perfumesFiltrados)
-        } else {
-            console.warn("No se encontró la categoría que nos indicaste o no fueron escritas correctamente!")
-        }
-        respuesta = confirm("Deseas ver otra categoría?")
-    } while (respuesta === true)
-}
-//FUNCIÓN PARA COMPRAR
-function comprar(){
-    //Agregamos opcion de filtrar por categoría
-    let respuesta = confirm("Querés ver los perfumes de una misma categoria?")
-    if(respuesta === true){
-        filtrarPerfumePorCategoria()
-    }
-    //pedir id para buscar en la otra función dentro del array perfumes
-    
-    
-    let codigo = parseInt(prompt("Ingrese el código ID del perfume que te interesa: "))
-    let perfumeAComprar = buscarPerfume(codigo)
-    if (perfumeAComprar === undefined) {
-        console.warn("No se encontró el perfume que nos indicaste!")
-    }
-    else{
-        carrito.push(perfumeAComprar)
-        console.log(perfumeAComprar.nombre + " fue agregado al carrito.")
-        console.table(carrito)
-        respuesta = confirm("Deseas seguir agregando perfumes a tu carrito?:")
-        if(respuesta === true){
-            comprar()
-        }
-        else{
-            const finalizarCompra = new Comprar(carrito)
-            let total = finalizarCompra.totalCarrito()
-            console.log("El costo total de la compra es de $ ", total.toLocaleString("es-AR"))
+        if (resultado.length > 0) {
+            generarCardPerfumes(resultado)
         }
     }
-}
-comprar()
+})
