@@ -3,6 +3,18 @@ const carritoDeCompras = document.getElementById("carrito")
 const perfumesEnCarrito = document.getElementById("perfumesEnCarrito")
 const inputSearch = document.getElementById("inputSearch")
 const carrito = JSON.parse(localStorage.getItem("carritoPerfumes")) ?? []
+const perfumes = []
+const URLPerfumes = "js/arrays.json" //hace las veces de API backend
+
+function obtenerPerfumes(){
+    // Petición fetch para traer los perfumes
+    fetch(URLPerfumes)
+    .then((response) => response.json())
+    .then((data)=> perfumes.push(...data))
+    .then(() => generarCardPerfumes(perfumes))
+    .catch((error) => {cardPerfumes.innerHTML = retornarCardError(error)})
+}
+
 function actualizarPerfumesEnCarrito(){
     perfumesEnCarrito.textContent = carrito.length
 }
@@ -37,14 +49,34 @@ function eventoAgregarCarrito(){
             botonAgregar.forEach((boton) => boton.addEventListener("click", () => {
             const perfumeSeleccionado = perfumes.find((perfume)=> perfume.id == boton.id)
             carrito.push(perfumeSeleccionado)
+            mostrarToastPerfume(`${perfumeSeleccionado.nombre} agregado`, "green")
             actualizarPerfumesEnCarrito()
             localStorage.setItem("carritoPerfumes", JSON.stringify(carrito))
         })
     )}
 }
-generarCardPerfumes(perfumes)
+function mostrarToastPerfume(mensaje, color){
+    Toastify({
+        text: mensaje,
+        style: {
+            background: color,
+        },
+        duration: 3200,
+        close: true,
+        }).showToast();
+}
+function mostrarMensajeSinProducto(){
+    Swal.fire({
+        title: 'Error',
+        text: 'Debes cargar productos al carrito!',
+        icon: 'error',
+        confirmButtonText: 'Continuar'
+      })
+}
+//generarCardPerfumes(perfumes)
+obtenerPerfumes()
 carritoDeCompras.addEventListener("click", () => {
-    carrito.length > 0 ? location.href = "checkout.html" : alert("⛔️ No cargaste nada al carrito")
+    carrito.length > 0 ? location.href = "checkout.html" : mostrarMensajeSinProducto()
 })
 carritoDeCompras.addEventListener("mousemove", () => {
     if (carrito.length > 0) {
